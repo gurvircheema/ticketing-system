@@ -7,6 +7,7 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = @project.tickets.build(ticket_params)
+    @ticket.author = current_user
     if @ticket.save
       flash[:notice] = 'Ticket has been created.'
       redirect_to [@project, @ticket]
@@ -24,9 +25,9 @@ class TicketsController < ApplicationController
     if @ticket.update(ticket_params)
       flash[:notice] = 'Ticket has been updated.'
       redirect_to [@project, @ticket]
-    else 
+    else
       flash[:alert] = 'Ticket has not been updated.'
-      render :edit 
+      render :edit
     end
   end
 

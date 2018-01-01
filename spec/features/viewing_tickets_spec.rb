@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.feature 'Users can view tickets' do
   before do
+    author = FactoryBot.create(:user)
     sublime = FactoryBot.create(:project, name: 'sublime text 3')
     FactoryBot.create(
-      :ticket, project: sublime, name: 'Sublime Ticket',
+      :ticket, project: sublime, name: 'Sublime Ticket', author: author,
       description: 'Description that is atleast 10 digits long'
     )
     ie = FactoryBot.create(:project, name: 'IE')
@@ -13,7 +14,7 @@ RSpec.feature 'Users can view tickets' do
     )
     visit '/'
   end
-  
+
   scenario 'for a given project' do
     click_link 'sublime text 3'
     expect(page).to have_content 'Sublime Ticket'
