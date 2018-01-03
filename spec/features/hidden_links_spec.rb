@@ -10,7 +10,7 @@ RSpec.feature 'Users can only see the appropriate links' do
     assign_role!(user, :viewer, project)
   end
 
-  context 'anonymouse users' do
+  context 'anonymous users' do
     scenario 'cannot the see the New p=Project link' do
       visit '/'
       expect(page).not_to have_link 'New Project'
@@ -27,7 +27,7 @@ RSpec.feature 'Users can only see the appropriate links' do
     end
   end
 
-  context 'regular users' do
+  context 'regular users (non-admins, viewers' do
     before do
       login_as(user)
     end
@@ -35,6 +35,11 @@ RSpec.feature 'Users can only see the appropriate links' do
     scenario 'cannot see the new project link' do
       visit '/'
       expect(page).not_to have_link 'New Project'
+    end
+
+    scenario 'cannot see the edit project link' do
+      visit project_path(project)
+      expect(page).not_to have_link 'Edit Project'
     end
   end
 
@@ -51,6 +56,11 @@ RSpec.feature 'Users can only see the appropriate links' do
     scenario "can see the Delete Project link" do
       visit project_path(project)
       expect(page).to have_link "Delete Project"
+    end
+
+    scenario 'can see the edit project link' do
+      visit project_path(project)
+      expect(page).to have_link 'Edit Project'
     end
   end
 end

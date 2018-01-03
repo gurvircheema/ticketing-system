@@ -2,7 +2,11 @@
     <% title(@project.name, 'Projects') %>
     <h1><%= @project.name %></h1>
     <ul class='actions'>
-        <li><%= link_to 'Edit Project', edit_project_path(@project), class: 'edit' %></li>
+        <% if policy(@project).update? %>
+            <li>
+                <%= link_to 'Edit Project', edit_project_path(@project), class: 'edit' %>
+            </li>
+        <% end %>
         <% admin_only do %>
             <li>
                 <%= link_to 'Delete Project',
