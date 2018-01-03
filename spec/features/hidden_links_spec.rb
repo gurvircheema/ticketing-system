@@ -4,6 +4,7 @@ RSpec.feature 'Users can only see the appropriate links' do
   let(:user) { FactoryBot.create(:user) }
   let(:admin) { FactoryBot.create(:user, :admin, email: 'admin@gmail.com') }
   let(:project) { FactoryBot.create(:project) }
+  let(:ticket) { FactoryBot.create(:ticket, project: project, author: user)}
 
   before do
     login_as(user)
@@ -41,6 +42,11 @@ RSpec.feature 'Users can only see the appropriate links' do
       visit project_path(project)
       expect(page).not_to have_link 'New Ticket'
     end
+
+    scenario 'cannot see the edit ticket link' do
+      visit project_ticket_path(project, ticket)
+      expect(page).not_to have_link 'Edit Ticket'
+    end
   end
 
   context 'Admin users' do
@@ -66,6 +72,11 @@ RSpec.feature 'Users can only see the appropriate links' do
     scenario 'can see the new ticket link' do
       visit project_path(project)
       expect(page).to have_link 'New Ticket'
+    end
+
+    scenario 'can see the edit ticket link' do
+      visit project_ticket_path(project, ticket)
+      expect(page).to have_link 'Edit Ticket'
     end
   end
 end
