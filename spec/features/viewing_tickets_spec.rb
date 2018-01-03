@@ -3,15 +3,20 @@ require 'rails_helper'
 RSpec.feature 'Users can view tickets' do
   before do
     author = FactoryBot.create(:user)
+
     sublime = FactoryBot.create(:project, name: 'sublime text 3')
+    assign_role!(author, :viewer, sublime)
     FactoryBot.create(
       :ticket, project: sublime, name: 'Sublime Ticket', author: author,
       description: 'Description that is atleast 10 digits long'
     )
+
     ie = FactoryBot.create(:project, name: 'IE')
+    assign_role!(author, :viewer, ie)
     FactoryBot.create(
       :ticket, project: ie, name: 'Non standard compliance', description: 'it is a joke, really'
     )
+    login_as(author)
     visit '/'
   end
 

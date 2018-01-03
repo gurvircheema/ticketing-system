@@ -2,8 +2,13 @@ require 'rails_helper'
 
 RSpec.feature 'Users can only see the appropriate links' do
   let(:user) { FactoryBot.create(:user) }
-  let(:admin) { FactoryBot.create(:user, :admin) }
+  let(:admin) { FactoryBot.create(:user, :admin, email: 'admin@gmail.com') }
   let(:project) { FactoryBot.create(:project) }
+
+  before do
+    login_as(user)
+    assign_role!(user, :viewer, project)
+  end
 
   context 'anonymouse users' do
     scenario 'cannot the see the New p=Project link' do
