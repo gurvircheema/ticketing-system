@@ -9,7 +9,9 @@ class ProjectsController < ApplicationController
     authorize @project, :show?
   end
 
-  def edit; end
+  def edit
+    authorize @project, :update?
+  end
 
   def update
     authorize @project, :update?
