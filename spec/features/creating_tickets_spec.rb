@@ -37,21 +37,9 @@ RSpec.feature 'Users can create new tickets' do
     expect(page).to have_content 'Description is too short'
   end
 
-  # scenario 'with an attachment' do
-  #   fill_in 'Name', with: 'Ticket screenshot'
-  #   fill_in 'Description', with: 'Ticket with attachment'
-  #   attach_file 'File #1', 'spec/fixtures/speed.txt'
-  #   click_button 'Create Ticket'
-
-  #   expect(page).to have_content 'Ticket has been created'
-  #   within('#ticket .attachments') do
-  #     expect(page).to have_content 'speed.txt'
-  #   end
-  # end
-
   scenario 'persisting file uploads across the displays' do
     attach_file 'File #1', 'spec/fixtures/speed.txt'
-    click_button 'Create Ticket'
+    # click_button 'Create Ticket'
     fill_in 'Name', with: 'Add attachment'
     fill_in 'Description', with: 'Add proper description'
     click_button 'Create Ticket'
@@ -61,22 +49,22 @@ RSpec.feature 'Users can create new tickets' do
     end
   end
 
-  scenario 'with multiple attachments' do
-    fill_in 'Name', with: 'Report Error'
-    fill_in 'Description', with: 'Additional information is provided'
+  scenario "with multiple attachments", js: true do
+    fill_in "Name", with: "Add documentation for blink tag"
+    fill_in "Description", with: "Blink tag's speed attribute"
 
-    attach_file 'File #1', Rails.root.join('spec/fixtures/speed.txt')
-    attach_file 'File #2', Rails.root.join('spec/fixtures/spin.txt')
-    attach_file 'File #3', Rails.root.join('spec/fixtures/gradient.txt')
+    click_link "Add another file"
+    attach_file "File #1", Rails.root.join("spec/fixtures/speed.txt")
+    click_link "Add another file"
 
-    click_button 'Create Ticket'
+    attach_file "File #2", Rails.root.join("spec/fixtures/spin.txt")
+    click_button "Create Ticket"
 
-    expect(page).to have_content 'Ticket has been created'
+    expect(page).to have_content "Ticket has been created."
 
     within("#ticket .attachments") do
-      expect(page).to have_content 'speed.txt'
-      expect(page).to have_content 'spin.txt'
-      expect(page).to have_content 'gradient.txt'
+      expect(page).to have_content "speed.txt"
+      expect(page).to have_content "spin.txt"
     end
   end
 end
