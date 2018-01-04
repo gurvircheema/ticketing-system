@@ -48,4 +48,16 @@ RSpec.feature 'Users can create new tickets' do
       expect(page).to have_content 'speed.txt'
     end
   end
+
+  scenario 'persisting file uploads across the displays' do
+    attach_file 'File', 'spec/fixtures/speed.txt'
+    click_button 'Create Ticket'
+    fill_in 'Name', with: 'Add attachment'
+    fill_in 'Description', with: 'Add proper description'
+    click_button 'Create Ticket'
+
+    within('#ticket .attachment') do
+      expect(page).to have_content 'speed.txt'
+    end
+  end
 end
