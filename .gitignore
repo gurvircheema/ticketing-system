@@ -5,5 +5,5 @@
 !/log/.keep
 /tmp
 .DS_store
-public/uploads
+uploads
 
