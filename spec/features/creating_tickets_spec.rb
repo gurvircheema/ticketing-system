@@ -37,27 +37,46 @@ RSpec.feature 'Users can create new tickets' do
     expect(page).to have_content 'Description is too short'
   end
 
-  scenario 'with an attachment' do
-    fill_in 'Name', with: 'Ticket screenshot'
-    fill_in 'Description', with: 'Ticket with attachment'
-    attach_file 'File', 'spec/fixtures/speed.txt'
-    click_button 'Create Ticket'
+  # scenario 'with an attachment' do
+  #   fill_in 'Name', with: 'Ticket screenshot'
+  #   fill_in 'Description', with: 'Ticket with attachment'
+  #   attach_file 'File #1', 'spec/fixtures/speed.txt'
+  #   click_button 'Create Ticket'
 
-    expect(page).to have_content 'Ticket has been created'
-    within('#ticket .attachment') do
-      expect(page).to have_content 'speed.txt'
-    end
-  end
+  #   expect(page).to have_content 'Ticket has been created'
+  #   within('#ticket .attachments') do
+  #     expect(page).to have_content 'speed.txt'
+  #   end
+  # end
 
   scenario 'persisting file uploads across the displays' do
-    attach_file 'File', 'spec/fixtures/speed.txt'
+    attach_file 'File #1', 'spec/fixtures/speed.txt'
     click_button 'Create Ticket'
     fill_in 'Name', with: 'Add attachment'
     fill_in 'Description', with: 'Add proper description'
     click_button 'Create Ticket'
 
-    within('#ticket .attachment') do
+    within("#ticket .attachments") do
       expect(page).to have_content 'speed.txt'
+    end
+  end
+
+  scenario 'with multiple attachments' do
+    fill_in 'Name', with: 'Report Error'
+    fill_in 'Description', with: 'Additional information is provided'
+
+    attach_file 'File #1', Rails.root.join('spec/fixtures/speed.txt')
+    attach_file 'File #2', Rails.root.join('spec/fixtures/spin.txt')
+    attach_file 'File #3', Rails.root.join('spec/fixtures/gradient.txt')
+
+    click_button 'Create Ticket'
+
+    expect(page).to have_content 'Ticket has been created'
+
+    within("#ticket .attachments") do
+      expect(page).to have_content 'speed.txt'
+      expect(page).to have_content 'spin.txt'
+      expect(page).to have_content 'gradient.txt'
     end
   end
 end
