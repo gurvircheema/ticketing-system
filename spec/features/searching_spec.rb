@@ -40,4 +40,13 @@ RSpec.feature 'User can search for ticket matching specific criteria' do
       expect(page).not_to have_link 'Create users'
     end
   end
+
+  scenario 'when clicking on a tag' do
+    # click_link 'Create projects'
+    # click_link 'iteration1'
+    # within('#ticket') do
+    #   expect(page).to have_link 'Create projects'
+    #   expect(page).not_to have_link 'Create users'
+    # end
+  end
 end
