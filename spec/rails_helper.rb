@@ -18,6 +18,7 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
   config.include Warden::Test::Helpers, type: :feature
+  config.include Devise::TestHelpers, type: :controller
   config.after(type: :feature) { Warden.test_reset! }
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
