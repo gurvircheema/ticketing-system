@@ -16,6 +16,7 @@ RSpec.describe TicketPolicy do
       it { should_not permit_action :update }
       it { should_not permit_action :destroy }
       it { should_not permit_action :change_state }
+      it { should_not permit_action :tag }
     end
 
     context 'for viewers of the project' do
@@ -26,6 +27,7 @@ RSpec.describe TicketPolicy do
       it { should_not permit_action :update }
       it { should_not permit_action :destroy }
       it { should_not permit_action :change_state }
+      it { should_not permit_action :tag }
     end
 
     context 'for editors of the project' do
@@ -36,6 +38,7 @@ RSpec.describe TicketPolicy do
       it { should_not permit_action :update }
       it { should_not permit_action :destroy }
       it { should_not permit_action :change_state }
+      it { should_not permit_action :tag }
     end
 
     context 'for managers of the project' do
@@ -46,6 +49,7 @@ RSpec.describe TicketPolicy do
       it { should permit_action :update }
       it { should permit_action :destroy }
       it { should permit_action :change_state }
+      it { should permit_action :tag }
     end
 
     context 'for managers of other projects' do
@@ -57,6 +61,7 @@ RSpec.describe TicketPolicy do
       it { should_not permit_action :update }
       it { should_not permit_action :destroy }
       it { should_not permit_action :change_state }
+      it { should_not permit_action :tag }
     end
 
     context 'for administrators' do
@@ -67,6 +72,7 @@ RSpec.describe TicketPolicy do
       it { should permit_action :update }
       it { should permit_action :destroy }
       it { should permit_action :change_state }
+      it { should permit_action :tag }
     end
   end
 end
