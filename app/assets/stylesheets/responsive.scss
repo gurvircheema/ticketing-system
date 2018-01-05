@@ -3,7 +3,7 @@
     h1, h2, h3, h4, h5, h6 {
       max-width: 55%;
     }
-  
+
     ul.actions {
       position: absolute;
       bottom: -2px;
@@ -11,5 +11,19 @@
       max-width: 45%;
       text-align: right;
     }
+  }
+}
+
+@media(max_width: $screen-xs-max) {
+  input#search {
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+  }
+}
+
+@media(max-height: $screen-sm-max){
+  ul.actions .form-inline {
+    padding-bottom: 5px;
   }
 }
