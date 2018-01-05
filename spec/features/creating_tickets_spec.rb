@@ -70,4 +70,17 @@ RSpec.feature 'Users can create new tickets' do
       expect(page).to have_content "spin.txt"
     end
   end
+
+  scenario 'with associated tags' do
+    fill_in 'Name', with: 'Tag Ticket'
+    fill_in 'Description', with: 'Has many tags'
+    fill_in 'Tags', with: 'tagged experiment'
+    click_button 'Create Ticket'
+
+    expect(page).to have_content 'Ticket has been created'
+    within('#ticket #tags') do
+      expect(page).to have_content 'tagged'
+      expect(page).to have_content 'experiment'
+    end
+  end
 end
