@@ -15,6 +15,7 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'devise', '~> 3.4.1'
 gem 'fog', '~> 1.29.0'
 gem 'font-awesome-rails', '~> 4.3'
+gem 'net-ssh'
 gem 'pundit', '~> 0.3.0'
 gem 'rails_12factor', group: :production
 gem 'searcher', github: 'radar/searcher'
