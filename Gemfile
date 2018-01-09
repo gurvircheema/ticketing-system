@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3'
 gem 'carrierwave', '~> 0.11.2'
 gem 'devise', '~> 3.4.1'
+gem 'fog', '~> 1.29.0'
 gem 'font-awesome-rails', '~> 4.3'
 gem 'pundit', '~> 0.3.0'
 gem 'searcher', github: 'radar/searcher'
