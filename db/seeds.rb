@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 unless User.exists?('admin@ticketingsystem.com')
-  User.create(email: 'admin@ticketingsystem.com', password: 'password', admin: true)
+  User.create(email: 'admin@ticketingsystem.com', password: '123t!cketing@admin', admin: true)
 end
 
 unless User.exists?('viewer@ticketingsystem.com')
-  User.create(email: 'viewer@ticketingsystem.com', password: 'password')
+  User.create(email: 'viewer@ticketingsystem.com', password: '!@#password321')
 end
 
 ['Sublime Text 3', 'Internet Explorer'].each do |name|
