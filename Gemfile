@@ -16,6 +16,7 @@ gem 'devise', '~> 3.4.1'
 gem 'fog', '~> 1.29.0'
 gem 'font-awesome-rails', '~> 4.3'
 gem 'pundit', '~> 0.3.0'
+gem 'rails_12factor', group: :production
 gem 'searcher', github: 'radar/searcher'
 gem 'simple_form', '~> 3.1.0'
 
