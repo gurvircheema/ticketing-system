@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'active_model_serializers', '~> 0.9.3'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'carrierwave', '~> 0.11.2'
 gem 'devise', '~> 3.4.1'

@@ -8,6 +8,11 @@ class ProjectsController < ApplicationController
   def show
     authorize @project, :show?
     @tickets = @project.tickets
+    respond_to do |format|
+      format.html
+      format.json { render json: @project }
+      format.xml { render xml: @project }
+    end
   end
 
   def edit
