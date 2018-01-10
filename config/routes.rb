@@ -37,4 +37,10 @@ Rails.application.routes.draw do
   end
 
   resources :attachments, only: [:show, :new]
+
+  namespace :api do
+    resources :projects, only: [] do
+      resources :tickets
+    end
+  end
 end

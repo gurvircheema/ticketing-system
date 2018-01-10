@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
     "#{email} (#{admin? ? 'Admin' : 'User'})"
   end
 
+  def generate_api_key
+    self.update_column(:api_key, SecureRandom.hex(16))
+  end
+
   def archive
     self.update(archived_at: Time.now)
   end
